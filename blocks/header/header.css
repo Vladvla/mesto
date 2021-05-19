@@ -6,3 +6,11 @@
   border-style: solid;
   border-bottom-color: #545454;
 }
+
+@media screen and (max-width: 500px) {
+  .header {
+    margin: 0;
+    margin-bottom: 42px;
+    margin-top: 28px;
+  }
+}

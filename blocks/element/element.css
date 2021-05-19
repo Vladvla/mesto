@@ -5,3 +5,10 @@
   border-radius: 10px;
   background-repeat: no-repeat;
 }
+
+@media screen and (max-width: 900px) {
+  .element {
+    max-width: 282px;
+    justify-self: center;
+  }
+}

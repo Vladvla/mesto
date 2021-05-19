@@ -6,3 +6,12 @@
   margin: 195px auto 195px;
   padding: 34px 0 37px;
 }
+
+
+@media screen and (max-width: 500px) {
+  .popup__container {
+    margin: 123px 18px 123px;
+    padding: 25px auto;
+    align-items: center;
+  }
+}

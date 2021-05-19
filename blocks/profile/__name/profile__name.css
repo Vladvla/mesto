@@ -10,3 +10,11 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media screen and (max-width: 500px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 33px;
+    margin-right: 10px;
+  }
+}
