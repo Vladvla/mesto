@@ -39,8 +39,10 @@ function formSubmitHandler (evt) {
 
     // Выберите элементы, куда должны быть вставлены значения полей
 
-    nameProfile.setAttribute('value', nameInput);
-    nameRole.setAttribute('value', jobInput);
+    nameProfile.textContent = nameInput.value;
+    nameRole.textContent = jobInput.value;
+    nameInput.value = nameProfile.textContent;
+    jobInput.value = nameRole.textContent;
 
     // Вставьте новые значения с помощью textContent
 }
