@@ -1,7 +1,7 @@
 .element {
   display: flex;
   flex-direction: column;
-  background-image: url(../../images/rectangle-element.png);
+  background-color: #fff;
   border-radius: 10px;
   background-repeat: no-repeat;
 }

@@ -17,11 +17,11 @@
       <div class="profile__info">
         <div class="profile__info-container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button button" aria-label="Редактировать профиль"></button>
+          <button type="button" class="profile__edit-button button" aria-label="Редактировать профиль"></button>   <!-- У всех кнопок есть отдельный класс для эффекта при наведении в отдельном классе, пометил потому что при прошлой проверке прописали во всех кнопках что это нужно добавить. -->
         </div>
         <p class="profile__role">Исследователь океана</p>
       </div>
-      <button type="button" class="profile__add-button button" aria-label="Добавить новуб карточку"></button>
+      <button type="button" class="profile__add-button button" aria-label="Добавить новую карточку"></button>
     </section>
     <section class="elements">
       <ul class="elements__list">
@@ -29,42 +29,42 @@
           <img class="element__pic" src="./images/karachaevsk.png" alt="Здесь должен быть Карачаевск">
           <div class="element__container">
             <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="like button like_active" aria-label="Понравилось"></button>
+            <button type="button" class="element__like button element__like_active" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/elbrus.png" alt="Здесь должна быть гора эльбрус">
           <div class="element__container">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like button" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/dombai.png" alt="Здесь должен быть Домбай">
           <div class="element__container">
             <h2 class="element__title">Домбай</h2>
-            <button type="button" class="like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like button" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/elbrus.png" alt="Здесь должна быть гора эльбрус">
           <div class="element__container">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like button" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/dombai.png" alt="Здесь должен быть Домбай">
           <div class="element__container">
             <h2 class="element__title">Домбай</h2>
-            <button type="button" class="like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like button" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/karachaevsk.png" alt="Здесь должен быть Карачаевск">
           <div class="element__container">
             <h2 class="element__title">Карачаево-Ч...</h2>
-            <button type="button" class="like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like button" aria-label="Понравилось"></button>
           </div>
         </li>
       </ul>
@@ -73,15 +73,17 @@
   <footer class="footer">
     <p class="footer__author">© 2021 Щукин Владислав</p>
   </footer>
-  <section class="popup">
-    <form class="popup__container">
+  <div class="popup">
+    <div class="popup__container">
       <button type="button" class="popup__button-close button"></button>
       <h2 class="popup__edit">Редактировать профиль</h2>
-      <input value="Жак-Ив Кусто" class="popup__name">
-      <input value="Исследователь океана" class="popup__role">
-      <button type="submit" class="popup__button-save button">Сохранить</button>
-    </form>
-  </section>
+      <form id="popup__editForm" name="Форма редактирования профиля.">
+        <input id="popup__userName" name="Имя пользователя" placeholder="Ваше Имя" class="popup__edit-profile popup__edit-profile_position-top">
+        <input id="popup__userRole" name="Деятельность пользователя" placeholder="Чем Вы занимаетесь?" class="popup__edit-profile popup__edit-profile_position-bot">
+        <button type="submit" class="popup__button-save button">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <script src="./scripts/main.js"></script>
 </body>
 </html>
