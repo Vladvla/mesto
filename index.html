@@ -74,12 +74,12 @@
     <p class="footer__author">© 2021 Щукин Владислав</p>
   </footer>
   <div class="popup">
-    <div class="popup__container"> <!-- Я не знаю как данный элемент спозиционировать по центру чтобы на разных разрешениях это работало корректно, потому что у него display: block Уже все что можно перечитал, transfortm: translate не будет работать корректно даже если выставлять проценты потому что блок фиксированно выставляется на одно место и не двигается больше, нужно будет много медиа, асолютным позиционированием это задавать (ну такое себе) -->
+    <div class="popup__container">
       <button type="button" class="popup__button-close button"></button>
       <h2 class="popup__edit">Редактировать профиль</h2>
       <form id="popup__editForm" name="formEditProfile" class="popup__edit-form">
-        <input id="popup__userName" name="editUserName" placeholder="Ваше Имя" class="popup__edit-profile popup__edit-profile_position-top popup__edit-profile_input-name"> <!-- Последний класс, это модификатор, второй это класс для корректного позиционирования каждого поля в форме. -->
-        <input id="popup__userRole" name="editUserRole" placeholder="Чем Вы занимаетесь?" class="popup__edit-profile popup__edit-profile_position-bot popup__edit-profile_input-role"> <!-- Последний класс, это модификатор, второй это класс для корректного позиционирования каждого поля в форме. -->
+        <input id="popup__userName" name="popup__input" class="popup__edit-profile popup__edit-profile_position-top"> <!-- У меня id используется в js, классы для стилей. -->
+        <input id="popup__userRole" name="popup__input" class="popup__edit-profile popup__edit-profile_position-bot"> <!-- У меня id используется в js, классы для стилей. -->
         <button type="submit" class="popup__button-save">Сохранить</button>
       </form>
     </div>

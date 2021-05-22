@@ -60,10 +60,6 @@
 
 @import url(../blocks/popup/__edit-profile/_position/popup__edit-profile_position-bot.css);
 
-@import url(../blocks/popup/__edit-profile/_input/popup__edit-profile_input-name.css);
-
-@import url(../blocks/popup/__edit-profile/_input/popup__edit-profile_input-role.css);
-
 @import url(../blocks/popup/__button-save/popup__button-save.css);
 
 @import url(../blocks/button/button.css);
