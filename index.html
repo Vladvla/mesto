@@ -17,7 +17,7 @@
       <div class="profile__info">
         <div class="profile__info-container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button button" aria-label="Редактировать профиль"></button>   <!-- У всех кнопок есть отдельный класс для эффекта при наведении в отдельном классе, пометил потому что при прошлой проверке прописали во всех кнопках что это нужно добавить. -->
+          <button type="button" class="profile__edit-button button" aria-label="Редактировать профиль"></button>   <!-- Исправил тему с opacity, я не думал что это очень важно, чтобы opacity везде были в 100% точности как на макете -->
         </div>
         <p class="profile__role">Исследователь океана</p>
       </div>
@@ -29,42 +29,42 @@
           <img class="element__pic" src="./images/karachaevsk.png" alt="Здесь должен быть Карачаевск">
           <div class="element__container">
             <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__like button element__like_active" aria-label="Понравилось"></button>
+            <button type="button" class="element__like element__like_active" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/elbrus.png" alt="Здесь должна быть гора эльбрус">
           <div class="element__container">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/dombai.png" alt="Здесь должен быть Домбай">
           <div class="element__container">
             <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/elbrus.png" alt="Здесь должна быть гора эльбрус">
           <div class="element__container">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/dombai.png" alt="Здесь должен быть Домбай">
           <div class="element__container">
             <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like" aria-label="Понравилось"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__pic" src="./images/karachaevsk.png" alt="Здесь должен быть Карачаевск">
           <div class="element__container">
             <h2 class="element__title">Карачаево-Ч...</h2>
-            <button type="button" class="element__like button" aria-label="Понравилось"></button>
+            <button type="button" class="element__like" aria-label="Понравилось"></button>
           </div>
         </li>
       </ul>
@@ -74,13 +74,13 @@
     <p class="footer__author">© 2021 Щукин Владислав</p>
   </footer>
   <div class="popup">
-    <div class="popup__container">
+    <div class="popup__container"> <!-- Я не знаю как данный элемент спозиционировать по центру чтобы на разных разрешениях это работало корректно, потому что у него display: block Уже все что можно перечитал, transfortm: translate не будет работать корректно даже если выставлять проценты потому что блок фиксированно выставляется на одно место и не двигается больше, нужно будет много медиа, асолютным позиционированием это задавать (ну такое себе) -->
       <button type="button" class="popup__button-close button"></button>
       <h2 class="popup__edit">Редактировать профиль</h2>
-      <form id="popup__editForm" name="Форма редактирования профиля.">
-        <input id="popup__userName" name="Имя пользователя" placeholder="Ваше Имя" class="popup__edit-profile popup__edit-profile_position-top">
-        <input id="popup__userRole" name="Деятельность пользователя" placeholder="Чем Вы занимаетесь?" class="popup__edit-profile popup__edit-profile_position-bot">
-        <button type="submit" class="popup__button-save button">Сохранить</button>
+      <form id="popup__editForm" name="formEditProfile" class="popup__edit-form">
+        <input id="popup__userName" name="editUserName" placeholder="Ваше Имя" class="popup__edit-profile popup__edit-profile_position-top popup__edit-profile_input-name"> <!-- Последний класс, это модификатор, второй это класс для корректного позиционирования каждого поля в форме. -->
+        <input id="popup__userRole" name="editUserRole" placeholder="Чем Вы занимаетесь?" class="popup__edit-profile popup__edit-profile_position-bot popup__edit-profile_input-role"> <!-- Последний класс, это модификатор, второй это класс для корректного позиционирования каждого поля в форме. -->
+        <button type="submit" class="popup__button-save">Сохранить</button>
       </form>
     </div>
   </div>

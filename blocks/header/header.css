@@ -1,7 +1,7 @@
 .header {
   max-width: 880px;
   margin: 45px auto 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, .23);
+  border-bottom: 1px solid rgba(84, 84, 84, 1); /* У меня в палитре выдает такое значение цвета #545454, пробовал сам подобрать его и получил в rgba (0, 0, 0, .67), но он в таком случае не отображается. */
 }
 
 @media screen and (max-width: 500px) {

@@ -5,3 +5,9 @@
   margin-bottom: 16px;
   align-items: flex-end;
 }
+
+@media screen and (max-width: 500px) {
+  .profile__info-container{
+    justify-content: center;
+  }
+}

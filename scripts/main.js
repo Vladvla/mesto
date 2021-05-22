@@ -11,17 +11,18 @@ let jobInput = document.querySelector('#popup__userRole');
 let nameProfile = document.querySelector('.profile__name');
 let nameRole = document.querySelector('.profile__role');
 
-openPopup.addEventListener('click', function() {
+function openPopupEvent(event) {
   popup.classList.add('popup_opened');
-})
-
-closePopup.addEventListener('click', function() {
-  popup.classList.remove('popup_opened');
-})
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = nameRole.textContent;
+}
 
 function closePopupEvent(event) {
   popup.classList.remove('popup_opened');
 }
+
+openPopup.addEventListener('click', openPopupEvent);
+closePopup.addEventListener('click', closePopupEvent);
 
 popup.addEventListener('click', function(event) {
   if (event.target === event.currentTarget) {
@@ -39,8 +40,6 @@ function formSubmitHandler (evt) {
     // Новые значения через textContent
     nameProfile.textContent = nameInput.value;
     nameRole.textContent = jobInput.value;
-    nameInput.value = nameProfile.textContent;
-    jobInput.value = nameRole.textContent;
 
     closePopupEvent()
 

@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  margin-bottom: 8px;
 }
 
 @media screen and (max-width: 500px) {

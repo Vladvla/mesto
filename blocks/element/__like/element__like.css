@@ -2,7 +2,13 @@
   width: 22px;
   height: 19px;
   background-image: url(../../../images/Vector_like.svg);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   margin: 30px 20px 30px auto;
   cursor: pointer;
+  transition: 1s;
+}
+
+.element__like:hover {
+  opacity: .5;
 }
