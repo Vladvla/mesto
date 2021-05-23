@@ -54,11 +54,9 @@
 
 @import url(../blocks/popup/__edit/popup__edit.css);
 
+@import url(../blocks/popup/__edit-form/popup__edit-form.css);
+
 @import url(../blocks/popup/__edit-profile/popup__edit-profile.css);
-
-@import url(../blocks/popup/__edit-profile/_position/popup__edit-profile_position-top.css);
-
-@import url(../blocks/popup/__edit-profile/_position/popup__edit-profile_position-bot.css);
 
 @import url(../blocks/popup/__button-save/popup__button-save.css);
 
