@@ -17,7 +17,7 @@
       <div class="profile__info">
         <div class="profile__info-container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button button" aria-label="Редактировать профиль"></button>   <!-- Исправил тему с opacity, я не думал что это очень важно, чтобы opacity везде были в 100% точности как на макете -->
+          <button type="button" class="profile__edit-button button" aria-label="Редактировать профиль"></button>
         </div>
         <p class="profile__role">Исследователь океана</p>
       </div>
@@ -81,6 +81,17 @@
         <input id="name-input" name="name" class="popup__edit-profile">
         <input id="role-input" name="role" class="popup__edit-profile">
         <button type="submit" class="popup__button-save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup-additem">
+    <div class="popup__container">
+      <button type="button" class="popup__button-close button"></button>
+      <h2 class="popup__edit">Новое место</h2>
+      <form id="popup__editForm" name="formEditProfile" class="popup__edit-form">
+        <input id="name-input" name="name" placeholder="Название" class="popup__edit-profile">
+        <input id="img-input" name="role" placeholder="Ссылка на картинку" class="popup__edit-profile">
+        <button type="submit" class="popup__button-save">Создать</button>
       </form>
     </div>
   </div>

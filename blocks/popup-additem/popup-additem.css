@@ -1,4 +1,4 @@
-.popup {
+.popup-additem {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity .6s linear;
