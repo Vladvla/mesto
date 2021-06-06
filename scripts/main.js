@@ -26,20 +26,24 @@ const initialCards = [
   }
 ];
 // элементы открытия и закрытия попап'ов
-let openPopup = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-let closePopup = popup.querySelectorAll('.popup__button-close');
 let popupAddItem = document.querySelector('.popup-additem');
 let openPopupAddItem = document.querySelector('.profile__add-button');
+let openPopup = document.querySelector('.profile__edit-button');
+let closePopups = document.querySelectorAll('.popup__button-close');
+let addCard = popupAddItem.querySelector('.popup__button-add');
 // Находим форму в DOM
 let formElement = document.querySelector('#popup__editForm');
 // Находим поля формы в DOM
 let nameInput = document.querySelector('#name-input');
 let jobInput = document.querySelector('#role-input');
+let cardNameinput = document.querySelector('#cardName-input');
 let imgInput = document.querySelector('#img-input');
 // Элементы куда должны быть вставлены значения полей формы
 let nameProfile = document.querySelector('.profile__name');
 let nameRole = document.querySelector('.profile__role');
+
+const itemTemplate = document.querySelector('.elements__list').content;
 
 function openPopupEvent(event) {
   popup.classList.add('popup_opened');
@@ -51,17 +55,18 @@ function openPopupAddItemEvent(event) {
   popupAddItem.classList.add('popup_opened');
 };
 
-function renderClosePopupEvent() {
-  closePopup.forEach(closePopupEvent);
-}
+closePopups.forEach(addCloseHandler);
 
-function closePopupEvent(event) {
-  popup.classList.remove('popup_opened');
+function addCloseHandler (closePopups) {
+  closePopups.addEventListener('click', closePopupsHandler);
+};
+
+ function closePopupsHandler(e) {
+  popup.classList.remove('popup_opened') || popupAddItem.classList.remove('popup_opened');
 }
 
 openPopup.addEventListener('click', openPopupEvent);
 openPopupAddItem.addEventListener('click', openPopupAddItemEvent);
-closePopup.addEventListener('click', closePopupEvent);
 
 popup.addEventListener('mousedown', function(event) {
   if (event.target === event.currentTarget) {
@@ -69,7 +74,24 @@ popup.addEventListener('mousedown', function(event) {
   }
 });
 
+// Добавление элементов.
 
+function renderInitialCards() {
+  initialCards.forEach(renderInitialCard);
+}
+
+function renderInitialCard(name,link) {
+  const htmlElement = itemTemplate.clonNode(true);
+  htmlElement.querySelector('.element__pic').innerText = link;
+  htmlElement.querySelector('.element__title').innerText = name;
+  List.appendChild(htmlElement);
+}
+
+function handleSubbmit () {
+  renderInitialCard(cardNameinput.value);
+}
+
+addCard.addEventListener('click', handleSubbmit);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет

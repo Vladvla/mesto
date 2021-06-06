@@ -24,50 +24,7 @@
       <button type="button" class="profile__add-button button" aria-label="Добавить новую карточку"></button>
     </section>
     <section class="elements">
-      <ul class="elements__list">
-        <li class="element">
-          <img class="element__pic" src="./images/karachaevsk.png" alt="Здесь должен быть Карачаевск">
-          <div class="element__container">
-            <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__like element__like_active" aria-label="Понравилось"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__pic" src="./images/elbrus.png" alt="Здесь должна быть гора эльбрус">
-          <div class="element__container">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like" aria-label="Понравилось"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__pic" src="./images/dombai.png" alt="Здесь должен быть Домбай">
-          <div class="element__container">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like" aria-label="Понравилось"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__pic" src="./images/elbrus.png" alt="Здесь должна быть гора эльбрус">
-          <div class="element__container">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like" aria-label="Понравилось"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__pic" src="./images/dombai.png" alt="Здесь должен быть Домбай">
-          <div class="element__container">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like" aria-label="Понравилось"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__pic" src="./images/karachaevsk.png" alt="Здесь должен быть Карачаевск">
-          <div class="element__container">
-            <h2 class="element__title">Карачаево-Ч...</h2>
-            <button type="button" class="element__like" aria-label="Понравилось"></button>
-          </div>
-        </li>
-      </ul>
+        
     </section>
   </main>
   <footer class="footer">
@@ -89,12 +46,22 @@
       <button type="button" class="popup__button-close button"></button>
       <h2 class="popup__edit">Новое место</h2>
       <form id="popup__editForm" name="formEditProfile" class="popup__edit-form">
-        <input id="name-input" name="name" placeholder="Название" class="popup__edit-profile">
+        <input id="cardName-input" name="name" placeholder="Название" class="popup__edit-profile">
         <input id="img-input" name="role" placeholder="Ссылка на картинку" class="popup__edit-profile">
-        <button type="submit" class="popup__button-save">Создать</button>
+        <button type="submit" class="popup__button-add">Создать</button>
       </form>
     </div>
   </div>
+  <template class="elements__list">
+    <li class="element">
+      <button type="button" class="element__remove button" aria-label="Удалить карточку"></button>
+      <img class="element__pic" src="">
+      <div class="element__container">
+        <h2 class="element__title"></h2>
+        <button type="button" class="element__like element__like_active" aria-label="Понравилось"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/main.js"></script>
 </body>
 </html>
