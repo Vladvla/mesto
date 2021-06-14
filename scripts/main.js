@@ -43,8 +43,6 @@ let imgInput = document.querySelector('#img-input');
 let nameProfile = document.querySelector('.profile__name');
 let nameRole = document.querySelector('.profile__role');
 
-const itemTemplate = document.querySelector('.elements__list').content;
-
 function openPopupEvent(event) {
   popup.classList.add('popup_opened');
   nameInput.value = nameProfile.textContent;
@@ -70,22 +68,34 @@ openPopupAddItem.addEventListener('click', openPopupAddItemEvent);
 
 popup.addEventListener('mousedown', function(event) {
   if (event.target === event.currentTarget) {
-    closePopupEvent()
+    closePopupsHandler();
+  }
+});
+
+popupAddItem.addEventListener('mousedown', function(event) {
+  if (event.target === event.currentTarget) {
+    closePopupsHandler();
   }
 });
 
 // Добавление элементов.
 
+const itemTemplate = document.querySelector('#element-template').content;
+const itemsList = document.querySelector('.elements');
+
 function renderInitialCards() {
   initialCards.forEach(renderInitialCard);
 }
 
-function renderInitialCard(name,link) {
-  const htmlElement = itemTemplate.clonNode(true);
-  htmlElement.querySelector('.element__pic').innerText = link;
-  htmlElement.querySelector('.element__title').innerText = name;
-  List.appendChild(htmlElement);
+function renderInitialCard({name,link}) {
+  const htmlElement = itemTemplate.querySelector('.element').cloneNode(true);
+  htmlElement.querySelector('.element__title').textContent = name;
+  htmlElement.querySelector('.element__pic').src = link;
+  htmlElement.querySelector('.element__pic').alt = name;
+  itemsList.append(htmlElement);
 }
+
+renderInitialCards();
 
 function handleSubbmit () {
   renderInitialCard(cardNameinput.value);

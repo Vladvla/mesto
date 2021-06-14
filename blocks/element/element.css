@@ -5,11 +5,11 @@
   background-color: #fff;
   border-radius: 10px;
   background-repeat: no-repeat;
+  max-width: 282px;
 }
 
 @media screen and (max-width: 900px) {
   .element {
-    max-width: 282px;
     justify-self: center;
   }
 }
