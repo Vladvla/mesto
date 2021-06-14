@@ -42,6 +42,11 @@ let imgInput = document.querySelector('#img-input');
 // Элементы куда должны быть вставлены значения полей формы
 let nameProfile = document.querySelector('.profile__name');
 let nameRole = document.querySelector('.profile__role');
+// Добавление элементов.
+const itemTemplate = document.querySelector('#element-template').content;
+const itemsList = document.querySelector('.elements');
+// Элемент удаления карточки.
+const deleteItem = itemTemplate.querySelector('.element__remove');
 
 function openPopupEvent(event) {
   popup.classList.add('popup_opened');
@@ -78,11 +83,6 @@ popupAddItem.addEventListener('mousedown', function(event) {
   }
 });
 
-// Добавление элементов.
-
-const itemTemplate = document.querySelector('#element-template').content;
-const itemsList = document.querySelector('.elements');
-
 function renderInitialCards() {
   initialCards.forEach(renderInitialCard);
 }
@@ -93,9 +93,18 @@ function renderInitialCard({name,link}) {
   htmlElement.querySelector('.element__pic').src = link;
   htmlElement.querySelector('.element__pic').alt = name;
   itemsList.append(htmlElement);
+  setEventListeners(htmlElement);
 }
 
 renderInitialCards();
+
+function handleDelete(evt){
+  evt.target.closest('.element').remove();
+}
+
+function setEventListeners(element) {
+  element.addEventListener('click', handleDelete);
+}
 
 function handleSubbmit () {
   renderInitialCard(cardNameinput.value);
