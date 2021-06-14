@@ -45,8 +45,6 @@ let nameRole = document.querySelector('.profile__role');
 // Добавление элементов.
 const itemTemplate = document.querySelector('#element-template').content;
 const itemsList = document.querySelector('.elements');
-// Элемент удаления карточки.
-const deleteItem = itemTemplate.querySelector('.element__remove');
 
 function openPopupEvent(event) {
   popup.classList.add('popup_opened');
@@ -103,7 +101,7 @@ function handleDelete(evt){
 }
 
 function setEventListeners(element) {
-  element.addEventListener('click', handleDelete);
+  element.querySelector('.element__remove').addEventListener('click', handleDelete);
 }
 
 function handleSubbmit () {
