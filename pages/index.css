@@ -68,4 +68,12 @@
 
 @import url(../blocks/popup/__button-add/popup__button-add.css);
 
+@import url(../blocks/popup-item/popup-item.css);
+
+@import url(../blocks/popup-item/__container/popup-item__container.css);
+
+@import url(../blocks/popup-item/__pic/popup-item__pic.css);
+
+@import url(../blocks/popup-item/__caption/popup-item__caption.css);
+
 @import url(../blocks/popup/_opened/popup_opened.css);

@@ -34,17 +34,20 @@ let closePopups = document.querySelectorAll('.popup__button-close');
 let addCard = popupAddItem.querySelector('.popup__button-add');
 // Находим форму в DOM
 let formElement = document.querySelector('#popup__editForm');
+let formItem = document.querySelector('#popup__addForm');
 // Находим поля формы в DOM
 let nameInput = document.querySelector('#name-input');
 let jobInput = document.querySelector('#role-input');
 let cardNameinput = document.querySelector('#cardName-input');
 let imgInput = document.querySelector('#img-input');
-// Элементы куда должны быть вставлены значения полей формы
-let nameProfile = document.querySelector('.profile__name');
-let nameRole = document.querySelector('.profile__role');
 // Добавление элементов.
 const itemTemplate = document.querySelector('#element-template').content;
 const itemsList = document.querySelector('.elements');
+// Элементы куда должны быть вставлены значения полей формы
+let nameProfile = document.querySelector('.profile__name');
+let nameRole = document.querySelector('.profile__role');
+let nameItem = itemsList.querySelector('.element__title');
+let picItem = itemsList.querySelector('.element__pic');
 
 function openPopupEvent(event) {
   popup.classList.add('popup_opened');
@@ -63,7 +66,8 @@ function addCloseHandler (closePopups) {
 };
 
  function closePopupsHandler(e) {
-  popup.classList.remove('popup_opened') || popupAddItem.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
+  popupAddItem.classList.remove('popup_opened');
 }
 
 openPopup.addEventListener('click', openPopupEvent);
@@ -90,8 +94,9 @@ function renderInitialCard({name,link}) {
   htmlElement.querySelector('.element__title').textContent = name;
   htmlElement.querySelector('.element__pic').src = link;
   htmlElement.querySelector('.element__pic').alt = name;
+  setEventListenersDelete(htmlElement);
+  setEventListenersLike(htmlElement);
   itemsList.append(htmlElement);
-  setEventListeners(htmlElement);
 }
 
 renderInitialCards();
@@ -100,15 +105,17 @@ function handleDelete(evt){
   evt.target.closest('.element').remove();
 }
 
-function setEventListeners(element) {
+function setEventListenersDelete(element) {
   element.querySelector('.element__remove').addEventListener('click', handleDelete);
 }
 
-function handleSubbmit () {
-  renderInitialCard(cardNameinput.value);
+function handleLike(evt){
+  evt.target.closest('.element').classList.toggle('element__like_active');
 }
 
-addCard.addEventListener('click', handleSubbmit);
+function setEventListenersLike(el) {
+  el.querySelector('.element__like').addEventListener('click', handleLike);
+}
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -121,26 +128,44 @@ function formSubmitHandler (evt) {
     nameProfile.textContent = nameInput.value;
     nameRole.textContent = jobInput.value;
 
-    closePopupEvent()
+    closePopupsHandler();
 
 }
-
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler); 
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+function formSubmitHandlerNew (evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+                                              // Так мы можем определить свою логику отправки.
+                                              // О том, как это делать, расскажем позже.
+  // Новые значения 
+  let name = cardNameinput.value;
+  let link = imgInput.value;
+  renderInitialCard({name,link});
+  cardNameinput.value = '';
+  imgInput.value ='';
+  closePopupsHandler();
+}
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+formItem.addEventListener('submit', formSubmitHandlerNew); 
 
+// let like = document.querySelectorAll('.element__like');
 
+// let likeArray = like.map(function(obj) {
+//   return obj.value;
+// });
 
-
-// let like = document.querySelectorAll('.like');
-// let likeDif = document.querySelector('.like_active');
+// likeArray.forEach(like);
 
 // like.addEventListener('click', function() {
-//   like.classList.add('like_active');
+//   likeArray.classList.toggle('element__like_active');
 // })
 
 // like.addEventListener('click', function() {
-//   like.classList.remove('like_active');
+//   likeArray.classList.remove('like_active');
 // })
 
 // function toggleLike() {

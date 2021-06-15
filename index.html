@@ -45,12 +45,19 @@
     <div class="popup__container">
       <button type="button" class="popup__button-close button"></button>
       <h2 class="popup__edit">Новое место</h2>
-      <form id="popup__editForm" name="formEditProfile" class="popup__edit-form">
+      <form id="popup__addForm" name="formEditProfile" class="popup__edit-form">
         <input id="cardName-input" name="name" placeholder="Название" class="popup__edit-profile">
-        <input id="img-input" name="role" placeholder="Ссылка на картинку" class="popup__edit-profile">
+        <input id="img-input" name="pic" placeholder="Ссылка на картинку" class="popup__edit-profile">
         <button type="submit" class="popup__button-add">Создать</button>
       </form>
     </div>
+  </div>
+  <figure class="popup-item"> <!-- popup_opened -->
+    <div class="popup-item__container">
+      <img class="popup-item__pic" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
+      <figcaption class="popup-item__caption">dgasdgadfhadfhgshsdfhadfgasdfgsdgsdfgsdfg</figcaption>
+      <button type="button" class="popup__button-close button"></button>
+    </figure>
   </div>
   <template id="element-template" class="elements__list">
     <li class="element">
