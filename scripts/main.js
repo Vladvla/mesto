@@ -27,12 +27,12 @@ const initialCards = [
 ];
 // элементы открытия и закрытия попап'ов
 const popup = document.querySelector('.popup');
-const popupAddItem = document.querySelector('.popup-additem');
+const popupAddItem = document.querySelector('#popupAdditem');
 const openPopupAddItem = document.querySelector('.profile__add-button');
 const openPopup = document.querySelector('.profile__edit-button');
 const closePopups = document.querySelectorAll('.popup__button-close');
 const addCard = popupAddItem.querySelector('.popup__button-add');
-const popupItem = document.querySelector('.popup-item');
+const popupItem = document.querySelector('#popupItem');
 // Находим форму в DOM
 const formElement = document.querySelector('#popup__editForm');
 const formItem = document.querySelector('#popup__addForm');
