@@ -26,28 +26,32 @@ const initialCards = [
   }
 ];
 // элементы открытия и закрытия попап'ов
-let popup = document.querySelector('.popup');
-let popupAddItem = document.querySelector('.popup-additem');
-let openPopupAddItem = document.querySelector('.profile__add-button');
-let openPopup = document.querySelector('.profile__edit-button');
-let closePopups = document.querySelectorAll('.popup__button-close');
-let addCard = popupAddItem.querySelector('.popup__button-add');
+const popup = document.querySelector('.popup');
+const popupAddItem = document.querySelector('.popup-additem');
+const openPopupAddItem = document.querySelector('.profile__add-button');
+const openPopup = document.querySelector('.profile__edit-button');
+const closePopups = document.querySelectorAll('.popup__button-close');
+const addCard = popupAddItem.querySelector('.popup__button-add');
+const popupItem = document.querySelector('.popup-item');
 // Находим форму в DOM
-let formElement = document.querySelector('#popup__editForm');
-let formItem = document.querySelector('#popup__addForm');
+const formElement = document.querySelector('#popup__editForm');
+const formItem = document.querySelector('#popup__addForm');
 // Находим поля формы в DOM
-let nameInput = document.querySelector('#name-input');
-let jobInput = document.querySelector('#role-input');
-let cardNameinput = document.querySelector('#cardName-input');
-let imgInput = document.querySelector('#img-input');
+const nameInput = document.querySelector('#name-input');
+const jobInput = document.querySelector('#role-input');
+const cardNameinput = document.querySelector('#cardName-input');
+const imgInput = document.querySelector('#img-input');
 // Добавление элементов.
 const itemTemplate = document.querySelector('#element-template').content;
 const itemsList = document.querySelector('.elements');
 // Элементы куда должны быть вставлены значения полей формы
-let nameProfile = document.querySelector('.profile__name');
-let nameRole = document.querySelector('.profile__role');
-let nameItem = itemsList.querySelector('.element__title');
-let picItem = itemsList.querySelector('.element__pic');
+const nameProfile = document.querySelector('.profile__name');
+const nameRole = document.querySelector('.profile__role');
+const nameItem = itemsList.querySelector('.element__title');
+const picItem = itemsList.querySelector('.element__pic');
+// Элементы которые и куда должны быть вставлены в popup карточки.
+const picItemPopup = popupItem.querySelector('.popup-item__pic');
+const picNamePopup = popupItem.querySelector('.popup-item__caption');
 
 function openPopupEvent(event) {
   popup.classList.add('popup_opened');
@@ -68,6 +72,7 @@ function addCloseHandler (closePopups) {
  function closePopupsHandler(e) {
   popup.classList.remove('popup_opened');
   popupAddItem.classList.remove('popup_opened');
+  popupItem.classList.remove('popup_opened');
 }
 
 openPopup.addEventListener('click', openPopupEvent);
@@ -85,6 +90,12 @@ popupAddItem.addEventListener('mousedown', function(event) {
   }
 });
 
+popupItem.addEventListener('mousedown', function(event) {
+  if (event.target === event.currentTarget) {
+    closePopupsHandler();
+  }
+});
+
 function renderInitialCards() {
   initialCards.forEach(renderInitialCard);
 }
@@ -94,23 +105,31 @@ function renderInitialCard({name,link}) {
   htmlElement.querySelector('.element__title').textContent = name;
   htmlElement.querySelector('.element__pic').src = link;
   htmlElement.querySelector('.element__pic').alt = name;
-  setEventListenersDelete(htmlElement);
+  htmlElement.querySelector('.element__title').addEventListener('click', handlePopupItem);
+  htmlElement.querySelector('.element__pic').addEventListener('click', handlePopupItem);
+  function handlePopupItem({name,link}){
+    popupItem.classList.add('popup_opened');
+    picItemPopup.src = htmlElement.querySelector('.element__pic').src;
+    picNamePopup.textContent = htmlElement.querySelector('.element__title').textContent;
+    picItemPopup.alt = htmlElement.querySelector('.element__pic').alt;
+  }
+  setEventListenersDeconste(htmlElement);
   setEventListenersLike(htmlElement);
   itemsList.append(htmlElement);
 }
 
 renderInitialCards();
 
-function handleDelete(evt){
+function handleDeconste(evt){
   evt.target.closest('.element').remove();
 }
 
-function setEventListenersDelete(element) {
-  element.querySelector('.element__remove').addEventListener('click', handleDelete);
+function setEventListenersDeconste(element) {
+  element.querySelector('.element__remove').addEventListener('click', handleDeconste);
 }
 
 function handleLike(evt){
-  evt.target.closest('.element').classList.toggle('element__like_active');
+  evt.target.classList.toggle('element__like_active');
 }
 
 function setEventListenersLike(el) {
@@ -141,8 +160,8 @@ function formSubmitHandlerNew (evt) {
                                               // Так мы можем определить свою логику отправки.
                                               // О том, как это делать, расскажем позже.
   // Новые значения 
-  let name = cardNameinput.value;
-  let link = imgInput.value;
+  const name = cardNameinput.value;
+  const link = imgInput.value;
   renderInitialCard({name,link});
   cardNameinput.value = '';
   imgInput.value ='';
@@ -152,9 +171,9 @@ function formSubmitHandlerNew (evt) {
 // он будет следить за событием “submit” - «отправка»
 formItem.addEventListener('submit', formSubmitHandlerNew); 
 
-// let like = document.querySelectorAll('.element__like');
+// const like = document.querySelectorAll('.element__like');
 
-// let likeArray = like.map(function(obj) {
+// const likeArray = like.map(function(obj) {
 //   return obj.value;
 // });
 

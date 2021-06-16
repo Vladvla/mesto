@@ -1,3 +1,4 @@
 .popup-item__pic {
-  
+  position: relative;
+  max-height: 75vh;
 }
