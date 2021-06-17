@@ -50,8 +50,8 @@ const nameRole = document.querySelector('.profile__role');
 const nameItem = itemsList.querySelector('.element__title');
 const picItem = itemsList.querySelector('.element__pic');
 // Элементы которые и куда должны быть вставлены в popup карточки.
-const picItemPopup = popupItem.querySelector('.popup-item__pic');
-const picNamePopup = popupItem.querySelector('.popup-item__caption');
+const picItemPopup = popupItem.querySelector('.popup__item-pic');
+const picNamePopup = popupItem.querySelector('.popup__item-caption');
 
 function openPopupEvent(event) {
   popup.classList.add('popup_opened');

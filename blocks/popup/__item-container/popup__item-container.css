@@ -1,4 +1,4 @@
-.popup-item__container {
+.popup__item-container {
   display: flex;
   position: relative;
   flex-direction: column;
