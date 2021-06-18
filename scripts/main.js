@@ -26,16 +26,17 @@ const initialCards = [
   }
 ];
 // элементы открытия и закрытия попап'ов
-const popup = document.querySelector('.popup');
+const popupEditProfile = document.querySelector('#popupEditProfile');
 const popupAddItem = document.querySelector('#popupAdditem');
-const openPopupAddItem = document.querySelector('.profile__add-button');
-const openPopup = document.querySelector('.profile__edit-button');
-const closePopups = document.querySelectorAll('.popup__button-close');
-const addCard = popupAddItem.querySelector('.popup__button-add');
+const btnOpenPopupAddItem = document.querySelector('.profile__add-button');
+const btnOpenPopupEditProfile = document.querySelector('.profile__edit-button');
+const buttonsClosePopups = document.querySelectorAll('.popup__button-close');
+const buttonAddCard = popupAddItem.querySelector('.popup__button-add');
 const popupItem = document.querySelector('#popupItem');
+const popups = document.querySelectorAll('.popup');
 // Находим форму в DOM
-const formElement = document.querySelector('#popup__editForm');
-const formItem = document.querySelector('#popup__addForm');
+const formEditProfile = document.querySelector('#popup__editForm');
+const formAddItem = document.querySelector('#popup__addForm');
 // Находим поля формы в DOM
 const nameInput = document.querySelector('#name-input');
 const jobInput = document.querySelector('#role-input');
@@ -53,51 +54,41 @@ const picItem = itemsList.querySelector('.element__pic');
 const picItemPopup = popupItem.querySelector('.popup__item-pic');
 const picNamePopup = popupItem.querySelector('.popup__item-caption');
 
-function openPopupEvent(event) {
+
+function openPopups (popup) {
   popup.classList.add('popup_opened');
+}
+
+popups.forEach((item) => {
+  item.addEventListener('click', (evt) =>{
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')) {
+      closePopups(item);
+    }
+  });
+});
+
+function closePopups(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+function openPopupEditItemEvent() {
+  openPopups(popupEditProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = nameRole.textContent;
 }
 
-function openPopupAddItemEvent(event) {
-  popupAddItem.classList.add('popup_opened');
+function openPopupAddItemEvent(el) {
+  openPopups(popupAddItem);
 };
 
-closePopups.forEach(addCloseHandler);
-
-function addCloseHandler (closePopups) {
-  closePopups.addEventListener('click', closePopupsHandler);
-};
-
- function closePopupsHandler(e) {
-  popup.classList.remove('popup_opened');
-  popupAddItem.classList.remove('popup_opened');
-  popupItem.classList.remove('popup_opened');
-}
-
-openPopup.addEventListener('click', openPopupEvent);
-openPopupAddItem.addEventListener('click', openPopupAddItemEvent);
-
-popup.addEventListener('mousedown', function(event) {
-  if (event.target === event.currentTarget) {
-    closePopupsHandler();
-  }
-});
-
-popupAddItem.addEventListener('mousedown', function(event) {
-  if (event.target === event.currentTarget) {
-    closePopupsHandler();
-  }
-});
-
-popupItem.addEventListener('mousedown', function(event) {
-  if (event.target === event.currentTarget) {
-    closePopupsHandler();
-  }
-});
+btnOpenPopupEditProfile.addEventListener('click', openPopupEditItemEvent);
+btnOpenPopupAddItem.addEventListener('click', openPopupAddItemEvent);
 
 function renderInitialCards() {
-  initialCards.forEach(renderInitialCard);
+  initialCards.forEach(item => {
+    const itemElem = renderInitialCard(item);
+    itemsList.append(itemElem);
+  });
 }
 
 function renderInitialCard({name,link}) {
@@ -105,20 +96,30 @@ function renderInitialCard({name,link}) {
   htmlElement.querySelector('.element__title').textContent = name;
   htmlElement.querySelector('.element__pic').src = link;
   htmlElement.querySelector('.element__pic').alt = name;
-  htmlElement.querySelector('.element__title').addEventListener('click', handlePopupItem);
-  htmlElement.querySelector('.element__pic').addEventListener('click', handlePopupItem);
-  function handlePopupItem({name,link}){
-    popupItem.classList.add('popup_opened');
-    picItemPopup.src = htmlElement.querySelector('.element__pic').src;
-    picNamePopup.textContent = htmlElement.querySelector('.element__title').textContent;
-    picItemPopup.alt = htmlElement.querySelector('.element__pic').alt;
-  }
+  htmlElement.querySelector('.element__title').addEventListener('click', function () {
+    handlePopupItem(name,link);
+  });
+  htmlElement.querySelector('.element__pic').addEventListener('click', function () {
+    handlePopupItem(name,link);
+  });
   setEventListenersDeconste(htmlElement);
   setEventListenersLike(htmlElement);
-  itemsList.append(htmlElement);
+  return htmlElement;
+}
+
+function handlePopupItem(name,link){
+  picItemPopup.src = link
+  picNamePopup.textContent = name;
+  picItemPopup.alt = name;
+  openPopups(popupItem);
 }
 
 renderInitialCards();
+
+function addCards(name,link) {
+    const itemElem = renderInitialCard(name,link);
+    itemsList.prepend(itemElem);
+}
 
 function handleDeconste(evt){
   evt.target.closest('.element').remove();
@@ -138,7 +139,7 @@ function setEventListenersLike(el) {
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler (evt) {
+function handleEditProfileform (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
@@ -147,46 +148,26 @@ function formSubmitHandler (evt) {
     nameProfile.textContent = nameInput.value;
     nameRole.textContent = jobInput.value;
 
-    closePopupsHandler();
+    closePopups(popupEditProfile);
 
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler); 
+formEditProfile.addEventListener('submit', handleEditProfileform); 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandlerNew (evt) {
+function handleAddItemform (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                                               // Так мы можем определить свою логику отправки.
                                               // О том, как это делать, расскажем позже.
   // Новые значения 
   const name = cardNameinput.value;
   const link = imgInput.value;
-  renderInitialCard({name,link});
+  addCards({name,link});
   cardNameinput.value = '';
-  imgInput.value ='';
-  closePopupsHandler();
+  imgInput.value = '';
+  closePopups(popupAddItem);
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formItem.addEventListener('submit', formSubmitHandlerNew); 
-
-// const like = document.querySelectorAll('.element__like');
-
-// const likeArray = like.map(function(obj) {
-//   return obj.value;
-// });
-
-// likeArray.forEach(like);
-
-// like.addEventListener('click', function() {
-//   likeArray.classList.toggle('element__like_active');
-// })
-
-// like.addEventListener('click', function() {
-//   likeArray.classList.remove('like_active');
-// })
-
-// function toggleLike() {
-//   like.classList.toggle('like_active');
-// }
+formAddItem.addEventListener('submit', handleAddItemform); 
