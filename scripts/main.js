@@ -56,6 +56,7 @@ const picNamePopup = popupItem.querySelector('.popup__item-caption');
 
 
 function openPopups (popup) {
+  document.addEventListener('keydown', handleEscUp)
   popup.classList.add('popup_opened');
 }
 
@@ -69,6 +70,14 @@ popups.forEach((item) => {
 
 function closePopups(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscUp);
+}
+
+function handleEscUp(evt) {
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopups(activePopup);
+  }
 }
 
 function openPopupEditItemEvent() {
@@ -77,7 +86,7 @@ function openPopupEditItemEvent() {
   jobInput.value = nameRole.textContent;
 }
 
-function openPopupAddItemEvent(el) {
+function openPopupAddItemEvent() {
   openPopups(popupAddItem);
 };
 
@@ -164,8 +173,7 @@ function handleAddItemform (evt) {
   const name = cardNameinput.value;
   const link = imgInput.value;
   addCards({name,link});
-  cardNameinput.value = '';
-  imgInput.value = '';
+  formAddItem.reset();
   closePopups(popupAddItem);
 }
 // Прикрепляем обработчик к форме:

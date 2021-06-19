@@ -11,13 +11,8 @@
   margin-left: 36px;
   padding: 0;
   padding-bottom: 13px;
-  margin-bottom: 30px;
 }
 
-.popup__edit-profile:last-of-type {
-  margin-bottom: 48px;
-}
-  
   @media screen and (max-width: 600px) {
     .popup__edit-profile {
       width: 84.5%;
