@@ -1,5 +1,5 @@
 import {Card} from './Card.js';
-import {FormValidate} from './validate.js';
+import {FormValidator} from './FormValidator.js';
 //  массив карточек, которые добавляются при загрузке страницы
 const initialCards = [
   {
@@ -56,20 +56,20 @@ const object = ({
   spanErrors: '.popup__input-error',
 });
 
-const formValidatorEditProfile = new FormValidate(object, popupEditProfile);
+const formValidatorEditProfile = new FormValidator(object, popupEditProfile);
 formValidatorEditProfile.enableValidation();
-const formValidatorAddPicture = new FormValidate(object, popupAdditem);
+const formValidatorAddPicture = new FormValidator(object, popupAdditem);
 formValidatorAddPicture.enableValidation();
 
 
-function renderCard(e) {
+function createCard(e) {
   e.preventDefault();
-  createCard(placeInput.value, pictureInput.value, '.elements-list');
+  renderCard(placeInput.value, pictureInput.value, '.elements-list');
   closePopup(popupAdditem);
 };
 
 
-function createCard(name, link, element) {
+function renderCard(name, link, element) {
   const card = new Card(name, link, element);
   const cardElement = card.generateCard();
   document.querySelector('.elements').prepend(cardElement);
@@ -77,7 +77,7 @@ function createCard(name, link, element) {
 
 
 initialCards.forEach((item) => {
-  createCard(item.name, item.link, '.elements-list')
+  renderCard(item.name, item.link, '.elements-list')
 });
 
 export function openPopup(popup) {
@@ -117,7 +117,7 @@ profileAddButton.addEventListener('click', () => {
   openPopup(popupAdditem);
 });
 
-popupAdditem.addEventListener('submit', renderCard);
+popupAdditem.addEventListener('submit', createCard);
 
 popupEditProfile.addEventListener('submit', changeProfileName);
 

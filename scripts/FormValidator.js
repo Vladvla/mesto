@@ -1,4 +1,4 @@
-export class FormValidate {
+export class FormValidator {
   constructor(obj, formElement) {
     this._inputElement = obj.inputElement;
     this._submitButtons = obj.submitButtons;
@@ -65,12 +65,13 @@ export class FormValidate {
   };
 
   resetPopupForm = () => {
-  this._spanErrorsList.forEach((spacErrors) => {
-    spacErrors.textContent= ' ';
+  this._spanErrorsList.forEach((spanErrors) => {
+    spanErrors.textContent= ' ';
   });
   this._inputList.forEach((inputElement) => {
     inputElement.classList.remove(this._inputErrors);
   });
   this._submitButtonElement.classList.add(this._submitButtonDisabled);
+  this._submitButtonElement.setAttribute('disabled', true);
   };
 };
