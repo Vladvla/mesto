@@ -61,20 +61,23 @@ formValidatorEditProfile.enableValidation();
 const formValidatorAddPicture = new FormValidator(object, popupAdditem);
 formValidatorAddPicture.enableValidation();
 
-
-function createCard(e) {
+function handleCardSubmit(e) {
   e.preventDefault();
   renderCard(placeInput.value, pictureInput.value, '.elements-list');
   closePopup(popupAdditem);
 };
 
 
-function renderCard(name, link, element) {
+function createCard(name, link, element) {
   const card = new Card(name, link, element);
   const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
+  return cardElement
 };
 
+function renderCard(name, link, element) {
+  const cardElement = createCard(name, link, element);
+  document.querySelector('.elements').prepend(cardElement);
+};
 
 initialCards.forEach((item) => {
   renderCard(item.name, item.link, '.elements-list')
@@ -117,7 +120,7 @@ profileAddButton.addEventListener('click', () => {
   openPopup(popupAdditem);
 });
 
-popupAdditem.addEventListener('submit', createCard);
+popupAdditem.addEventListener('submit', handleCardSubmit);
 
 popupEditProfile.addEventListener('submit', changeProfileName);
 
