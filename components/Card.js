@@ -20,14 +20,14 @@ export class Card {
 		this._likeButton = this._newCard.querySelector('.element__like');
 
 		this._likeButton.addEventListener('click', () =>{
-			this._likeButton.classList.toggle('element__like_active')
+			this._likeButton.classList.toggle('element__like_active');
 		})
 		this._cardDeleteButton.addEventListener('click', function (evt){
 			const evtTarget = evt.target
-			evtTarget.closest('.elements-list').remove()
+			evtTarget.closest('.element').remove();
 		})
 		this._cardImage.addEventListener("click", () =>{
-			this._handleCardClick(this._name, this._link)
+			this._handleCardClick(this._name, this._link);
 		})
 	}
 	

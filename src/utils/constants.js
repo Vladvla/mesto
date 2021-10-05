@@ -47,7 +47,8 @@ const profileName = page.querySelector('.profile__name');
 const profileRole = page.querySelector('.profile__role');
 const editForm = popupEditProfile.querySelector('#popup__editForm');
 const addForm = popupAdditem.querySelector('#popup__addForm');
-const elements = document.querySelector('.elements');
+const element = '.elements-list';
+const elements = page.querySelector('.elements');
 //валидация
 const object = ({
   inputElement: '.popup__edit-profile',
@@ -74,6 +75,7 @@ export{
 	profileRole,
   editForm,
   addForm,
+  element,
   elements,
 	object,
 }

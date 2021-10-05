@@ -1,13 +1,13 @@
 export class UserInfo{ 
-	constructor({name, job}){
+	constructor({name, role}){
 		this._userNameElement = name
-		this._userAboutElement = job
+		this._userAboutElement = role
 	}
 
 	getUserInfo(){
 		this._userData = {}
 		this._userData.name = this._userNameElement.textContent
-		this._userData.job = this._userAboutElement.textContent
+		this._userData.role = this._userAboutElement.textContent
 		return this._userData
 	}
 
@@ -15,8 +15,8 @@ export class UserInfo{
 		if (item.name){
 			this._userNameElement.textContent = item.name
 		}
-		if (item.job){ 
-			this._userAboutElement.textContent = item.job
+		if (item.role){ 
+			this._userAboutElement.textContent = item.role
 		}
 	}
 }

@@ -3,7 +3,6 @@ import { initialCards,
 	popupEditProfile,
 	popupAdditem,
 	popupPicture,
-  template,
 	nameInput,
 	jobInput,
 	profileEditButton,
@@ -12,7 +11,8 @@ import { initialCards,
 	profileRole,
   editForm,
   addForm,
-  elements,
+  element,
+	elements,
 	object,
 } from '../src/utils/constants.js';
 import { Card } from '../components/Card.js'
@@ -45,7 +45,7 @@ const cardsCatalogue = new Section({
 cardsCatalogue.renderItems();
 
 function createCard(name,link) {
-	const card = new Card(name, link, template, handleCardClick)
+	const card = new Card(name, link, element, handleCardClick)
 	return card.generateCard();
 }
 
@@ -71,13 +71,13 @@ popupProfileEdit.setEventListeners();
 profileEditButton.addEventListener('click', function(){
 	popupProfileEdit.open();
 	const origUserInfo = profileInfo.getUserInfo();
-	nameInput.value = origUserInfo.name
-	jobInput.value = origUserInfo.role
+	nameInput.value = origUserInfo.name;
+	jobInput.value = origUserInfo.role;
 })
 
 profileAddButton.addEventListener('click', function(){
 	newCard.open();
-	formValidatorCard.resetValidation();
+	formValidatorAddPicture.resetPopupForm();
 })
 
 addForm.addEventListener('submit', cardsCatalogue);
