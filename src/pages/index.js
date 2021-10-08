@@ -14,7 +14,7 @@ import { initialCards,
   element,
 	elements,
 	object,
-} from '../src/utils/constants.js';
+} from '../utils/constants.js';
 import { Card } from '../components/Card.js'
 import { FormValidator } from '../components/FormValidator.js'
 import { Section } from '../components/Section.js'
@@ -28,7 +28,7 @@ const formValidatorAddPicture = new FormValidator(object, addForm);
 formValidatorAddPicture.enableValidation();
 
 const newCard = new PopupWithForm(popupAdditem, (item) =>{
-	const newCards = createCard(item.cardname, item.link)
+	const newCards = createCard(item.nameItem, item.pic)
 	cardsCatalogue.addItem(newCards);
 	newCard.close();
 })
@@ -77,7 +77,7 @@ profileEditButton.addEventListener('click', function(){
 
 profileAddButton.addEventListener('click', function(){
 	newCard.open();
-	formValidatorAddPicture.resetPopupForm();
+	formValidatorAddPicture.resetValidation();
 })
 
 addForm.addEventListener('submit', cardsCatalogue);
