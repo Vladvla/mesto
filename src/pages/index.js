@@ -69,6 +69,7 @@ profileEditButton.addEventListener('click', function(){
 	const origUserInfo = profileInfo.getUserInfo();
 	nameInput.value = origUserInfo.name;
 	jobInput.value = origUserInfo.role;
+	formValidatorEditProfile.resetValidation();
 })
 
 profileAddButton.addEventListener('click', function(){
