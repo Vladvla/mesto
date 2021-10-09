@@ -50,15 +50,15 @@ const addForm = popupAdditem.querySelector('#popup__addForm');
 const element = '.elements-list';
 const elements = page.querySelector('.elements');
 
-const object = {
-	formSelector: '.popup__edit-form',
-	formElementField: '.popup__form-field',
-	inputSelector: '.popup__input',
-	submitButtonSelector: '.popup__button',
-	inactiveButtonClass: 'popup__button_disabled',
-	inputErrorClass: 'popup__input-error',
-	errorClass: 'popup__input-error_active'
-}
+//валидация
+const object = ({
+  inputElement: '.popup__edit-profile',
+  submitButtons: '.popup__button',
+  submitButtonDisabled: 'popup__button_disabled',
+  inputErrors: 'popup__input_type_error',
+  spanErrorsActive: 'popup__input-error_active',
+  spanErrors: '.popup__input-error',
+});
 
 export{
 	initialCards,
