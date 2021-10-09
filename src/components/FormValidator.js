@@ -63,23 +63,12 @@ export class FormValidator {
       this._submitButtonElement.removeAttribute('disabled');
     };
   };
-
-  resetPopupForm = () => {
-  this._spanErrorsList.forEach((spanErrors) => {
-    spanErrors.textContent= ' ';
-  });
-  this._inputList.forEach((inputElement) => {
-    inputElement.classList.remove(this._inputErrors);
-  });
-  this._submitButtonElement.classList.add(this._submitButtonDisabled);
-  this._submitButtonElement.setAttribute('disabled', true);
-  };
-
+  
 	resetValidation() {
 		this._toggleButtonState();// <== управляем кнопкой ==
 	
 		this._inputList.forEach((inputElement) => {
-			this._hideError(inputElement)// <==очищаем ошибки ==
+			this._hideInputError(inputElement)// <==очищаем ошибки ==
 		});
 	
 	}

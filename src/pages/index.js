@@ -78,7 +78,4 @@ profileEditButton.addEventListener('click', function(){
 profileAddButton.addEventListener('click', function(){
 	newCard.open();
 	formValidatorAddPicture.resetValidation();
-})
-
-addForm.addEventListener('submit', cardsCatalogue);
-editForm.addEventListener('submit',popupProfileEdit);
+});
