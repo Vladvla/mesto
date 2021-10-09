@@ -57,7 +57,7 @@ const object = {
 	submitButtonSelector: '.popup__button',
 	inactiveButtonClass: 'popup__button_disabled',
 	inputErrorClass: 'popup__input-error',
-	errorClass: 'popup__input-error'
+	errorClass: 'popup__input-error_active'
 }
 
 export{
