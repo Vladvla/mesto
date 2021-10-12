@@ -3,17 +3,24 @@ import {
 	initialCards,
 	popupEditProfile,
 	popupAdditem,
-	popupPicture,
+  popupAvatar,
+  popupDelete,
+  popupPicture,
 	nameInput,
 	jobInput,
+  avatarInput,
 	profileEditButton,
 	profileAddButton,
+  ProfileAvatarButton,
+  cardDeleteButton,
 	profileName,
 	profileRole,
+	profileAvatar,
   editForm,
   addForm,
+  avatarForm,
   element,
-	elements,
+  elements,
 	object,
 } from '../utils/constants.js';
 import { Card } from '../components/Card.js'
@@ -51,12 +58,12 @@ popupCardView.setEventListeners();
 function handleCardClick(name, link){
 	popupCardView.open(name, link);
 }
-/*popup*/
 
+// Попап обновления информации о пользователе.
 const profileInfo = new UserInfo({
 	name: profileName,
 	role: profileRole,
-})
+});
 
 const popupProfileEdit = new PopupWithForm(popupEditProfile, (item) => {
 	profileInfo.setUserInfo(item);
@@ -71,13 +78,34 @@ profileEditButton.addEventListener('click', function(){
 	jobInput.value = origUserInfo.role;
 	formValidatorEditProfile.resetValidation();
 })
-
+// Попап добавления карточки
 profileAddButton.addEventListener('click', function(){
 	newCard.open();
 	formValidatorAddPicture.resetValidation();
 })
+// Попап смены аватара
+const profileAvatarInfo = new UserInfo({
+	avatar: profileAvatar
+});
+
+const popupAvatarChange = new PopupWithForm(popupAvatar, (item) => {
+	profileAvatarInfo.setUserInfo(item);
+	popupAvatar.close();
+},avatarForm);
+popupAvatarChange.setEventListeners();
+
+ProfileAvatarButton.addEventListener('click', function(){
+  popupAvatar.open();
+	const origAvatarInfo = profileAvatarInfo.getUserInfo();
+	avatarInput.value = origAvatarInfo.link;
+	formValidatorAvatarform.resetValidation();
+});
 
 const formValidatorEditProfile = new FormValidator(object, editForm);
 formValidatorEditProfile.enableValidation();
+
 const formValidatorAddPicture = new FormValidator(object, addForm);
 formValidatorAddPicture.enableValidation();
+
+// const formValidatorAvatarform = new FormValidator(object, avatarForm);
+// formValidatorAvatarform.enableValidation();

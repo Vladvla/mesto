@@ -33,20 +33,32 @@ const initialCards = [
 ];
 //переменные
 const page = document.querySelector('.page');
+// Попапы
 const popupEditProfile = page.querySelector('#popupEditProfile');
 const popupAdditem = page.querySelector('#popupAdditem');
 const popupPicture = page.querySelector('#popupItem');
-const template = '.template';
+const popupAvatar = page.querySelector('#popupAvatarChange');
+const popupDelete = page.querySelector('#popupDeleteElement');
+// инпуты
 const placeInput = popupAdditem.querySelector('#cardName-input');
 const pictureInput = popupAdditem.querySelector('#img-input');
 const nameInput = popupEditProfile.querySelector('#name-input');
 const jobInput = popupEditProfile.querySelector('#role-input');
+const avatarInput = popupAvatar.querySelector('#avatar-input');
+// Кнопки вызова попап
 const profileEditButton = page.querySelector('.profile__edit-button');
 const profileAddButton = page.querySelector('.profile__add-button');
+const ProfileAvatarButton = page.querySelector('.profile__avatar-container');
+const cardDeleteButton = page.querySelector('.element__remove');
+// Поля для вставки
 const profileName = page.querySelector('.profile__name');
 const profileRole = page.querySelector('.profile__role');
+const profileAvatar = page.querySelector('.profile__avatar');
+// Формы
 const editForm = popupEditProfile.querySelector('#popup__editForm');
 const addForm = popupAdditem.querySelector('#popup__addForm');
+const avatarForm = popupAvatar.querySelector('#popup__changeAvatar');
+
 const element = '.elements-list';
 const elements = page.querySelector('.elements');
 
@@ -64,18 +76,24 @@ export{
 	initialCards,
 	popupEditProfile,
 	popupAdditem,
-  template,
+  popupAvatar,
+  popupDelete,
   popupPicture,
 	placeInput,
 	pictureInput,
 	nameInput,
 	jobInput,
+  avatarInput,
 	profileEditButton,
 	profileAddButton,
+  ProfileAvatarButton,
+  cardDeleteButton,
 	profileName,
 	profileRole,
+  profileAvatar,
   editForm,
   addForm,
+  avatarForm,
   element,
   elements,
 	object,

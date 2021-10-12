@@ -12,7 +12,9 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Здесь расположен Ваш аватар.">
+      <div class="profile__avatar-container">
+        <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Здесь расположен Ваш аватар.">
+      </div>
       <div class="profile__info">
         <div class="profile__info-container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -38,7 +40,7 @@
         <span class="popup__name-input-error popup__input-error"></span>
         <input required type="text" id="role-input" name="role" placeholder="Род деятельности" class="popup__edit-profile" minlength="2" maxlength="200">
         <span class="popup__role-input-error popup__input-error"></span>
-        <button type="submit" class="popup__button-save popup__button">Сохранить</button> <!-- popup__button_disabled -->
+        <button type="submit" class="popup__button">Сохранить</button> <!-- popup__button_disabled -->
       </form>
     </div>
   </div>
@@ -51,7 +53,7 @@
         <span class="popup__cardName-input-error popup__input-error"></span>
         <input required type="url" id="img-input" name="pic" placeholder="Ссылка на картинку" class="popup__edit-profile">
         <span class="popup__img-input-error popup__input-error"></span>
-        <button type="submit" class="popup__button-add popup__button">Создать</button> <!-- popup__button_disabled -->
+        <button type="submit" class="popup__button">Создать</button> <!-- popup__button_disabled -->
       </form>
     </div>
   </div>
@@ -62,13 +64,34 @@
       <button type="button" class="popup__button-close button"></button>
     </div>
   </div>
+  <div id="popupDeleteElement" class="popup"> <!-- popup_opened -->
+    <div class="popup__container"> 
+      <button type="button" class="popup__button-close button"></button>
+      <p class="popup__edit">Вы уверены?</p>
+      <button type="submit" class="popup__button popup__button_loading">Да</button> <!-- popup__button_disabled -->
+    </div>
+  </div>
+  <div id="popupAvatarChange" class="popup"> <!-- popup_opened -->
+    <div class="popup__container"> 
+      <button type="button" class="popup__button-close button"></button>
+      <p class="popup__edit">Обновить Аватар</p>
+      <form id="popup__changeAvatar" name="formChangeAvatar" class="popup__edit-form" novalidate>
+        <input required type="url" id="avatar-input" name="avatar" placeholder="Ссылка на изображение" class="popup__edit-profile">
+        <span class="popup__avatar-input-error popup__input-error"></span>
+      </form>
+      <button type="submit" class="popup__button popup__button_loading">Сохранить</button> <!-- popup__button_disabled -->
+    </div>
+  </div>
   <template id="element-template" class="elements-list">
     <article class="element">
       <button type="button" class="element__remove button" aria-label="Удалить карточку"></button>
       <img class="element__pic" src="#" alt="#">
       <div class="element__container">
         <h2 class="element__title"></h2>
-        <button type="button" class="element__like" aria-label="Понравилось"></button> <!--element__like_active-->
+        <div class="element__like-container">
+          <button type="button" class="element__like" aria-label="Понравилось"></button> <!--element__like_active--> 
+          <p class="element__like-counting"></p>
+        </div>
       </div>
     </article>
   </template>
