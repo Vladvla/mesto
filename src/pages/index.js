@@ -63,6 +63,7 @@ function handleCardClick(name, link){
 const profileInfo = new UserInfo({
 	name: profileName,
 	role: profileRole,
+	avatar: profileAvatar,
 });
 
 const popupProfileEdit = new PopupWithForm(popupEditProfile, (item) => {
@@ -84,20 +85,15 @@ profileAddButton.addEventListener('click', function(){
 	formValidatorAddPicture.resetValidation();
 })
 // Попап смены аватара
-const profileAvatarInfo = new UserInfo({
-	avatar: profileAvatar
-});
 
 const popupAvatarChange = new PopupWithForm(popupAvatar, (item) => {
-	profileAvatarInfo.setUserInfo(item);
+	profileInfo.setUserInfo(item);
 	popupAvatar.close();
 },avatarForm);
 popupAvatarChange.setEventListeners();
 
 ProfileAvatarButton.addEventListener('click', function(){
-  popupAvatar.open();
-	const origAvatarInfo = profileAvatarInfo.getUserInfo();
-	avatarInput.value = origAvatarInfo.link;
+  popupAvatarChange.open();
 	formValidatorAvatarform.resetValidation();
 });
 
@@ -107,5 +103,5 @@ formValidatorEditProfile.enableValidation();
 const formValidatorAddPicture = new FormValidator(object, addForm);
 formValidatorAddPicture.enableValidation();
 
-// const formValidatorAvatarform = new FormValidator(object, avatarForm);
-// formValidatorAvatarform.enableValidation();
+const formValidatorAvatarform = new FormValidator(object, avatarForm);
+formValidatorAvatarform.enableValidation();

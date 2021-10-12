@@ -31,6 +31,7 @@
   <footer class="footer">
     <p class="footer__author">© 2021 Щукин Владислав</p>
   </footer>
+  <!-- Попап редактирования профиля -->
   <div id="popupEditProfile" class="popup">
     <div class="popup__container">
       <button type="button" class="popup__button-close button"></button>
@@ -44,6 +45,7 @@
       </form>
     </div>
   </div>
+  <!-- Попап добавления карточки -->
   <div id="popupAdditem" class="popup">
     <div class="popup__container">
       <button type="button" class="popup__button-close button"></button>
@@ -57,6 +59,7 @@
       </form>
     </div>
   </div>
+  <!-- Увеличенная карточка -->
   <div id="popupItem" class="popup"> <!-- popup_opened -->
     <div class="popup__item-container">
       <img class="popup__item-pic" src="#" alt="#">
@@ -64,13 +67,15 @@
       <button type="button" class="popup__button-close button"></button>
     </div>
   </div>
+  <!-- Попап удаления карточки -->
   <div id="popupDeleteElement" class="popup"> <!-- popup_opened -->
     <div class="popup__container"> 
       <button type="button" class="popup__button-close button"></button>
       <p class="popup__edit">Вы уверены?</p>
-      <button type="submit" class="popup__button popup__button_loading">Да</button> <!-- popup__button_disabled -->
+      <button type="submit" class="popup__button">Да</button> <!-- popup__button_disabled -->
     </div>
   </div>
+  <!-- Смена аватара -->
   <div id="popupAvatarChange" class="popup"> <!-- popup_opened -->
     <div class="popup__container"> 
       <button type="button" class="popup__button-close button"></button>
@@ -79,9 +84,10 @@
         <input required type="url" id="avatar-input" name="avatar" placeholder="Ссылка на изображение" class="popup__edit-profile">
         <span class="popup__avatar-input-error popup__input-error"></span>
       </form>
-      <button type="submit" class="popup__button popup__button_loading">Сохранить</button> <!-- popup__button_disabled -->
+      <button type="submit" class="popup__button">Сохранить</button> <!-- popup__button_disabled -->
     </div>
   </div>
+  <!-- Темплейт карточки -->
   <template id="element-template" class="elements-list">
     <article class="element">
       <button type="button" class="element__remove button" aria-label="Удалить карточку"></button>

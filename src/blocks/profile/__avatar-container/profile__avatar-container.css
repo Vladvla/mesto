@@ -1,7 +1,6 @@
 .profile__avatar-container {
   position: relative;
   background-repeat: no-repeat;
-  z-index: 45;
   background-position: center;
   background-size:auto;
 }
