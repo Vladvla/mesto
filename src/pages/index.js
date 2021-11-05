@@ -88,7 +88,7 @@ profileAddButton.addEventListener('click', function(){
 
 const popupAvatarChange = new PopupWithForm(popupAvatar, (item) => {
 	profileInfo.setUserInfo(item);
-	popupAvatar.close();
+	popupAvatarChange.close();
 },avatarForm);
 popupAvatarChange.setEventListeners();
 
@@ -97,6 +97,7 @@ ProfileAvatarButton.addEventListener('click', function(){
 	formValidatorAvatarform.resetValidation();
 });
 
+// Валидация
 const formValidatorEditProfile = new FormValidator(object, editForm);
 formValidatorEditProfile.enableValidation();
 

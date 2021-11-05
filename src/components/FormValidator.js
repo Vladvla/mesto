@@ -46,6 +46,7 @@ export class FormValidator {
 
   enableValidation = () => {
     this._setEventListeners();
+    console.log(this._formElement)
   };
 
   _hasInvalidInput = () => {
