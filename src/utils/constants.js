@@ -59,7 +59,7 @@ const editForm = popupEditProfile.querySelector('#popup__editForm');
 const addForm = popupAdditem.querySelector('#popup__addForm');
 const avatarForm = popupAvatar.querySelector('#popup__changeAvatar');
 
-const element = '.elements-list';
+const elementSelector = '.elements-list';
 const elements = page.querySelector('.elements');
 
 //валидация
@@ -94,7 +94,7 @@ export{
   editForm,
   addForm,
   avatarForm,
-  element,
+  elementSelector,
   elements,
 	object,
 }

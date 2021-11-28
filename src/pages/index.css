@@ -50,6 +50,8 @@
 
 @import url(../blocks/element/__like-counting/element__like-counting.css);
 
+@import url(../blocks/element/__remove/_disable/element_remove_disable.css);
+
 @import url(../blocks/footer/footer.css);
 
 @import url(../blocks/footer/__author/footer__author.css);

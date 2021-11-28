@@ -1,6 +1,5 @@
 import './index.css';
 import { 
-	initialCards,
 	popupEditProfile,
 	popupAdditem,
   popupAvatar,
@@ -19,45 +18,117 @@ import {
   editForm,
   addForm,
   avatarForm,
-  element,
+  elementSelector,
   elements,
 	object,
 } from '../utils/constants.js';
-import { Card } from '../components/Card.js'
-import { FormValidator } from '../components/FormValidator.js'
-import { Section } from '../components/Section.js'
-import { PopupWithImage } from '../components/PopupWithImage.js'
-import { UserInfo } from '../components/UserInfo.js'
-import { PopupWithForm } from '../components/PopupWithForm.js'
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithDeleteCard } from '../components/PopupWithDeleteCard.js';
+import { Api } from '../components/Api.js';
 
-const newCard = new PopupWithForm(popupAdditem, (item) =>{
-	const newCards = createCard(item.nameItem, item.pic)
-	cardsCatalogue.addItem(newCards);
-	newCard.close();
+//  храним токен и url
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-30',
+  headers: {
+    authorization: 'd4f69483-99a0-47d5-81bb-bcbfdd5021cd',
+    'Content-Type': 'application/json'
+  }
+});
+
+//  храним айди пользователя, что бы передать его в карточку
+let userId;
+
+  //  выполняем промиcы
+	Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([dataCards, dataUser]) => {
+		userId = dataUser._id;
+    profileInfo.setUserInfo(dataUser);
+    cardsCatalogue.renderItems(dataCards);
+  })
+  .catch(err => {
+    console.log(err)
+  });
+
+	// Попап добавления карточки
+const popupNewCard = new PopupWithForm(
+	popupAdditem,
+	(dataForm) =>{
+	popupNewCard.onSubmitStart()
+    api.setNewCard(dataForm)
+      .then(item => {
+        const card = createCard(item);
+				cardsCatalogue.addItem(card, 'before');
+        popupNewCard.close()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => {
+        popupNewCard.onSubmitDefault()
+      });
+	popupNewCard.close();
 })
-newCard.setEventListeners();
+popupNewCard.setEventListeners();
 
+profileAddButton.addEventListener('click', function(){
+	popupNewCard.open();
+	formValidatorAddPicture.resetValidation();
+});
+
+// Удаление карточки
+const PopupDeleteCard = new PopupWithDeleteCard(popupDelete)
+PopupDeleteCard.setEventListeners();
+
+// рендер карточек
 const cardsCatalogue = new Section({
-	items: initialCards,
 	renderer:(item)=>{
-		const cardElement = createCard(item.name, item.link)
+		cardsCatalogue.addItem(createCard(item), 'after');
+	}
+},elements);
 
-		cardsCatalogue.addItem(cardElement);
-	}},elements);
 
-cardsCatalogue.renderItems();
-
-function createCard(name,link) {
-	const card = new Card(name, link, element, handleCardClick)
+function createCard(item) {
+	const card = new Card({ 
+		item:{...item, currentUser: userId},
+		handleCardClick,
+		handleLikeClick: (card) => {
+			if (card.isLiked()) {
+				api.deleteLike(card.id)
+					.then(dataCard => card.setLike(dataCard.likes));
+			} else {
+				api.putLike(card.id)
+					.then(dataCard => card.setLike(dataCard.likes));
+			}
+		},
+		handleCardDelete: (card) => {
+			PopupDeleteCard.open();
+			PopupDeleteCard.addAction(
+				() => {
+					api.deleteCard(card.id)
+						.then(()=> {
+							card.remove();
+							PopupDeleteCard.close()
+						})
+				}
+			)
+		}
+	},  
+	elementSelector
+		);
 	return card.generateCard();
-}
-
-const popupCardView = new PopupWithImage(popupPicture)
+};
+// попап увеличенной карточки.
+const popupCardView = new PopupWithImage(popupPicture);
 popupCardView.setEventListeners();
 
-function handleCardClick(name, link){
-	popupCardView.open(name, link);
-}
+function handleCardClick(item){
+	popupCardView.open(item);
+};
 
 // Попап обновления информации о пользователе.
 const profileInfo = new UserInfo({
@@ -66,34 +137,58 @@ const profileInfo = new UserInfo({
 	avatar: profileAvatar,
 });
 
-const popupProfileEdit = new PopupWithForm(popupEditProfile, (item) => {
-	profileInfo.setUserInfo(item);
-	popupProfileEdit.close();
-},editForm);
+const popupProfileEdit = new PopupWithForm(
+	popupEditProfile,
+	(dataForm) => {
+	popupProfileEdit.onSubmitStart()
+    api.setUserInfo(dataForm)
+      .then(dataUser => {
+        profileInfo.setUserInfo(dataUser)
+        popupProfileEdit.close()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => {
+        popupProfileEdit.onSubmitDefault()
+      });
+		popupProfileEdit.close();
+		});
 popupProfileEdit.setEventListeners();
 
 profileEditButton.addEventListener('click', function(){
 	popupProfileEdit.open();
 	const origUserInfo = profileInfo.getUserInfo();
 	nameInput.value = origUserInfo.name;
-	jobInput.value = origUserInfo.role;
+	jobInput.value = origUserInfo.about;
 	formValidatorEditProfile.resetValidation();
-})
-// Попап добавления карточки
-profileAddButton.addEventListener('click', function(){
-	newCard.open();
-	formValidatorAddPicture.resetValidation();
-})
+});
+
 // Попап смены аватара
 
-const popupAvatarChange = new PopupWithForm(popupAvatar, (item) => {
-	profileInfo.setUserInfo(item);
+const popupAvatarChange = new PopupWithForm(
+	popupAvatar,
+	(dataForm) => {
+		popupAvatarChange.onSubmitStart()
+			api.setUserAvatar(dataForm)
+				.then(dataUser => {
+					profileInfo.setUserInfo(dataUser)
+					popupAvatarChange.close()
+				})
+				.catch(err => {
+					console.log(err)
+				})
+				.finally(() => {
+					popupAvatarChange.onSubmitDefault()
+				});
 	popupAvatarChange.close();
-},avatarForm);
+});
 popupAvatarChange.setEventListeners();
 
 ProfileAvatarButton.addEventListener('click', function(){
   popupAvatarChange.open();
+	const origUserAvatar = profileInfo.getUserInfo();
+	avatarInput.value = origUserAvatar.avatar;
 	formValidatorAvatarform.resetValidation();
 });
 

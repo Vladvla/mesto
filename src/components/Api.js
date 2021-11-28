@@ -1,6 +1,90 @@
-export default class Api {
-  constructor(options){
-    this._url = options.baseUrl
-    this._headers = options.headers
+export class Api {
+  constructor(options) {
+      this._url = options.baseUrl
+      this._headers = options.headers
+  }
+
+  //  проверяем все ли впорядке с ответом
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  getUserInfo () {
+    return fetch(this._url + '/users/me', {
+      method: 'GET',
+      headers: this._headers
+    })
+    .then(this._checkResponse)
+  }
+
+  setUserInfo(inputValue) {
+    return fetch(this._url + '/users/me', {
+      method: 'PATCH',
+      body: JSON.stringify({
+        name: inputValue.name,
+        about: inputValue.role,
+      }),
+      headers: this._headers
+    })
+    .then(this._checkResponse)
+  }
+
+  setUserAvatar(userAvatar) {
+    console.log(userAvatar);
+    return fetch(this._url + '/users/me/avatar', {
+      method: 'PATCH',
+      body: JSON.stringify({
+        avatar: userAvatar.avatar,
+      }),
+      headers: this._headers
+    })
+    .then(this._checkResponse)
+  }
+
+  setNewCard(inputValue) {
+    return fetch(this._url + '/cards', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: inputValue.nameItem,
+        link: inputValue.pic,
+      }),
+      headers: this._headers
+    })
+    .then(this._checkResponse)
+  }
+
+  getInitialCards() {
+  return fetch(this._url + '/cards', {
+      method: 'GET',
+      headers: this._headers
+    })
+    .then(this._checkResponse)
+  }
+
+  putLike(cardId) {
+    return fetch(this._url + `/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+    .then(this._checkResponse)
+  }
+
+  deleteLike(cardId) {
+    return fetch(this._url + `/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(this._checkResponse)
+  }
+
+  deleteCard(cardId) {
+    return fetch(this._url + `/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(this._checkResponse)
   }
 }
