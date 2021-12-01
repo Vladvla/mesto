@@ -74,7 +74,7 @@
 
 @import url(../blocks/button/button.css);
 
-@import url(../blocks/popup/_button-delete/popup_button-delete.css);
+@import url(../blocks/popup/__button/_delete/popup_button_delete.css);
 
 @import url(../blocks/popup/__edit-form/_delete/popup__edit-form_delete.css);
 
