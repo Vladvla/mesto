@@ -36,7 +36,7 @@
 .popup__edit-profile{border:none;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;line-height:17px;margin-left:36px;max-width:358px;overflow:hidden;padding:0 0 13px;text-overflow:ellipsis;white-space:nowrap;width:83.5%}@media screen and (max-width:600px){.popup__edit-profile{margin-left:22px;width:84.5%}.popup__edit-profile:last-of-type{margin-bottom:45px}}
 .popup__button-save{background-color:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;line-height:22px;margin-left:36px;max-width:358px;padding:14px 0 18px;text-align:center;transition:1s;width:83.5%}.popup__button-save:hover{opacity:.8}@media screen and (max-width:500px){.popup__button-save{font-size:14px;line-height:17px;margin-left:22px;width:84.5%}}
 .button{transition:1s}.button:hover{opacity:.6}
-.popup_button_delete{height:50px;width:358px}
+.popup_button-delete{height:50px;width:358px}
 .popup__edit-form_delete{padding-right:36px}
 .popup__button-add{background-color:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;line-height:22px;margin-left:36px;max-width:358px;padding:14px 0 18px;text-align:center;transition:1s;width:83.5%}.popup__button-save:hover{opacity:.8}@media screen and (max-width:500px){.popup__button-save{font-size:14px;line-height:17px;margin-left:22px;width:84.5%}}
 .popup__confirm{color:#000;font-family:Inter;font-size:24px;font-style:normal;font-weight:900;height:23px;line-height:29px;margin:0 36px 36px;width:358px}@media screen and (max-width:540px){.popup__confirm{height:22px;width:238px}}
