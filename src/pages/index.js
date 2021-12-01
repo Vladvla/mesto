@@ -192,7 +192,6 @@ const popupAvatarChange = new PopupWithForm(
 				.finally(() => {
 					popupAvatarChange.onSubmitDefault()
 				});
-	popupAvatarChange.close();
 });
 popupAvatarChange.setEventListeners();
 
