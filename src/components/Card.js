@@ -29,6 +29,9 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
+    if (!(this._ownerId === this._userId)) {    //  если айди пользователя и айди создателя карты НЕ совпадают, удаляем иконку удаления карточки
+      this._buttonDelete.remove();
+    }
     this._setViewLike();
     this.setEventListeners();
     return this._element;
@@ -36,22 +39,6 @@ export class Card {
 
   remove(){
     this._element.remove();
-  }
-
-  isOwner(){
-    return this._likes.some(user => {
-        console.log('user._id', user._id)
-        console.log('_userId', this._userId)
-        return user._id === this._userId
-    });
-  }
-
-  _setViewDelete(){
-    if (kk){
-      this._likeButton.classList.remove('.element__remove_disable');
-    } else {
-      this._likeButton.classList.add('.element__remove_disable');
-    }
   }
 
   isLiked() {
@@ -81,5 +68,4 @@ export class Card {
     this._buttonDelete.addEventListener('click', () => this._handleCardDelete(this));
     this._cardImage.addEventListener('click', () => this._handleCardClick({name: this._name, link: this._link}))
   };
-	
-	};
+};

@@ -33,7 +33,6 @@ export class Api {
   }
 
   setUserAvatar(userAvatar) {
-    console.log(userAvatar);
     return fetch(this._url + '/users/me/avatar', {
       method: 'PATCH',
       body: JSON.stringify({
